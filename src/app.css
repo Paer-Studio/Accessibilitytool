@@ -1,0 +1,25 @@
+/* src/app.css */
+:root {
+    --color-bg: #f5f6fa;
+    --color-primary: #1e1e1e;
+    --color-accent: #005fcc;
+    --border-radius: 1rem;
+    --shadow: 0 0 16px rgba(0, 0, 0, 0.1);
+    --font: system-ui, sans-serif;
+  }
+  
+  body {
+    margin: 0;
+    font-family: var(--font);
+    background-color: white;
+    color: var(--color-primary);
+  }
+  
+  button,
+  select {
+    font-family: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: var(--border-radius);
+  }
+  
