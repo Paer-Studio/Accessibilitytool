@@ -1,5 +1,3 @@
-<h1>Test AccessibilityTool</h1>
-
   <script>
     import { onMount } from 'svelte';
     import ToggleButton from '$lib/components/ToggleButton.svelte';
@@ -44,4 +42,7 @@
   {#if menuVisible}
     <AccessibilityMenu />
   {/if}
+  <h1>Welcome to your library project Test AccessibilityTool</h1>
+  <p>Create your package using @sveltejs/package and preview/showcase your work with SvelteKit</p>
+  <p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
   
