@@ -1,25 +1,116 @@
-/* src/app.css */
+/* html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font-family: "Lexend", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  vertical-align: baseline;
+} */
+body {
+  margin: 0;
+  font-family: var(--font);
+  background-color: var(--general-background-color);
+  color: var(--color-primary);
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+a {
+  text-decoration: initial ;
+}
+button,
+select {
+  font-family: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: var(--border-radius);
+}
+
+/* semantic color variables for this project */
 :root {
-    --color-bg: #f5f6fa;
-    --color-primary: #1e1e1e;
-    --color-accent: #005fcc;
-    --border-radius: 1rem;
-    --shadow: 0 0 16px rgba(0, 0, 0, 0.1);
-    --font: system-ui, sans-serif;
+  --border-radius: 1rem;
+  --shadow: 0 0 16px rgba(0, 0, 0, 0.1);
+  --font: system-ui, sans-serif;
+
+	/* basic colors */
+  --color-bg: #f5f6fa;
+  --color-primary: #1e1e1e;
+  --color-accent: #005fcc;
+	--general-background-color: var(--off-white);
+
+	/* pallet */
+	--black:#101010;
+	--grey-500:#414141;
+	--grey-400:#717171;
+	--neutral-grey:#A0A0A0;
+	--neutral-grey-footer:#a0a0a05a;
+	--white:#ffffff;
+	--off-white:#F9F7F4;
+
+}
+
+@view-transition {
+	navigation: auto;
+}
+
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
   }
-  
-  body {
-    margin: 0;
-    font-family: var(--font);
-    background-color: white;
-    color: var(--color-primary);
-  }
-  
-  button,
-  select {
-    font-family: inherit;
-    font-size: 1rem;
-    cursor: pointer;
-    border-radius: var(--border-radius);
-  }
+} */
+
+
+*,
+*::before,
+*::after {
+	--scrollbar-color-thumb: var(--primary-green-500);
+	--scrollbar-color-track: transparent;
+	--scrollbar-width: thin;
+	--scrollbar-width-legacy: 10px;
+
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	scrollbar-gutter: stable;
+	
+	@supports (interpolate-size: allow-keywords){
+		interpolate-size: allow-keywords;
+		transition-behavior: allow-discrete;
+		scroll-behavior: smooth;
+		font-size-adjust: 0.5;
+	}
+
+}
+
   
