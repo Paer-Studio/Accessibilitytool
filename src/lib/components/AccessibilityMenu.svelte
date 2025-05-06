@@ -6,7 +6,7 @@
   }
   
   let { children }: Props = $props();
-  
+
   const comment = `it's missing the other a11y components and the styling for the menu and inputs`;
 </script>
 
@@ -18,10 +18,10 @@
   <h2 class="menu_title">Accessibility Menu</h2>
   <LanguageSelector />
   <ProfileSelector />
+  <button popovertarget="a11y-menu" popovertargetaction="hide">x</button>
   {#if children}
     {@render children()}
   {/if}
-  <button popovertarget="a11y-menu" popovertargetaction="hide">x</button>
 </div>
 
 <style>
@@ -60,7 +60,7 @@
     left: auto;
     margin-left: 5dvw;
     z-index: 10;
-    max-width: 90dvw;
+    max-width: min(90dvw,50rem);
     max-height: 50dvh;
     overflow: auto;
   }
@@ -86,6 +86,7 @@
       position-anchor: --myAnchor;
       top: calc(anchor(bottom) + 1rem);
       right: anchor(right);
+      left: auto;
       outline: orange solid;
     }
   }
@@ -106,14 +107,6 @@
       width: 100%;
       height: fit-content;
       margin: 0;
-    }
-
-    button[popovertargetaction="hide"] {
-      display: inline-flex;
-      position: absolute;
-      top: var(--btn-top);
-      right: 12dvw;
-      width: fit-content;
     }
   }
 
@@ -140,6 +133,14 @@
       margin: 0;
     }
 
+    button[popovertargetaction="hide"] {
+      display: inline-flex;
+      position: absolute;
+      top: var(--btn-top);
+      right: 12dvw;
+      width: fit-content;
+    }
+
     @supports (anchor-name: --myAnchor) {
       [popovertarget] {
         display: inline;
@@ -153,8 +154,9 @@
       .menu[popover] {
         position-anchor: --myAnchor;
         inset: unset;
-        inset-inline: 4%;
+        margin-inline: var(--btn-right) max(auto,var(--btn-right));
         width: auto;
+        right: anchor(right) !important;
         bottom: calc(anchor(top) + 1rem);
       }
     }
