@@ -1,6 +1,6 @@
 <script>
     import { language } from '$lib/stores/accessibility';
-  
+    let lang = $state('en')
     function setLang(lang) {
       language.set(lang);
     }
@@ -8,8 +8,8 @@
   
   <div class="section">
     <p class="section_label">Language</p>
-    <button on:click={() => setLang('nl')}>Nederlands</button>
-    <button on:click={() => setLang('en')}>English</button>
+    <button onclick={() => setLang('nl')}>Nederlands</button>
+    <button onclick={() => setLang('en')}>English</button>
   </div>
   
   <style>
