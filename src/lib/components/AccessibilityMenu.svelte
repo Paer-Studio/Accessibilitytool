@@ -1,8 +1,9 @@
 <script lang="ts">
   import LanguageSelector from './LanguageSelector.svelte';
   import ProfileSelector from './ProfileSelector.svelte';
+  import { fade } from 'svelte/transition';
   interface Props {
-    children?: import('svelte').Snippet<[]>;
+    children: import('svelte').Snippet<[]>;
   }
   
   let { children }: Props = $props();
@@ -10,19 +11,19 @@
   const comment = `it's missing the other a11y components and the styling for the menu and inputs`;
 </script>
 
-<div class="buttonBox">
-  <button popovertarget="a11y-menu">♿︎</button>
-</div>
+  <div class="buttonBox">
+    <button popovertarget="a11y-menu">♿︎</button>
+  </div>
 
-<div id="a11y-menu" class="menu" popover>
-  <h2 class="menu_title">Accessibility Menu</h2>
-  <LanguageSelector />
-  <ProfileSelector />
-  <button popovertarget="a11y-menu" popovertargetaction="hide">x</button>
-  {#if children}
-    {@render children()}
-  {/if}
-</div>
+  <div id="a11y-menu" class="menu" popover >
+    <h2 class="menu_title">Accessibility Menu</h2>
+    <LanguageSelector />
+    <ProfileSelector />
+    <button popovertarget="a11y-menu" popovertargetaction="hide">x</button>
+    {#if children}
+      {@render children()}
+    {/if}
+  </div>
 
 <style>
   :root {
@@ -45,24 +46,42 @@
     z-index: 1000;
     font-size: 1.5rem;
     cursor: pointer;
+    aspect-ratio: 1/1;
+    width: 3rem;
+    border-radius: 50%;
   }
 
   .menu {
-    position: fixed;
-    border: 1px solid #ccc;
-    padding: 1rem;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    border-radius: 0.5rem;
-    margin: 0;
-    top: calc(5dvh + var(--btn-top));
-    right: 5dvw;
-    outline: olive solid;
-    left: auto;
-    margin-left: 5dvw;
-    z-index: 10;
+    display: none;
     max-width: min(90dvw,50rem);
     max-height: 50dvh;
+    position: fixed;
+    top: calc(5dvh + var(--btn-top));
+    right: 5dvw;
+    left: auto;
+    z-index: 10;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 0;
+    margin-left: 5dvw;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     overflow: auto;
+    
+    transition-behavior: allow-discrete;
+    transition: opacity 0.2s ease-out, transform 0.1s ease-in-out,display 0.2s allow-discrete  ;
+    outline: olive solid;
+  }
+
+  .menu:popover-open {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+
+    @starting-style {
+      opacity: 0;
+      transform: translateY(5px);
+    }
   }
 
   .menu_title {
@@ -141,6 +160,7 @@
       width: fit-content;
     }
 
+    /* for the browsers that support anchor() */
     @supports (anchor-name: --myAnchor) {
       [popovertarget] {
         display: inline;
