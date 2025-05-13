@@ -18,9 +18,6 @@
       background: #000;
       color: #fff;
       border: none;
-      padding: 0.5rem;
-      font-size: 1.5rem;
-      cursor: pointer;
     }
   </style>
   
