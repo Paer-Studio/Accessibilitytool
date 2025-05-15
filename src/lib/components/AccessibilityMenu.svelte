@@ -2,33 +2,34 @@
   import LanguageSelector from './LanguageSelector.svelte';
   import ProfileSelector from './ProfileSelector.svelte';
   import { fade } from 'svelte/transition';
+
   interface Props {
     children: import('svelte').Snippet<[]>;
   }
-  
+
   let { children }: Props = $props();
 
   const comment = `it's missing the other a11y components and the styling for the menu and inputs`;
 </script>
 
-  <div class="buttonBox">
-    <button popovertarget="a11y-menu">♿︎</button>
-  </div>
+<div class="buttonBox">
+  <button popovertarget="a11y-menu">♿︎</button>
+</div>
 
-  <div id="a11y-menu" class="menu" popover >
-    <h2 class="menu_title">Accessibility Menu</h2>
-    <LanguageSelector />
-    <ProfileSelector />
-    <button popovertarget="a11y-menu" popovertargetaction="hide">x</button>
-    {#if children}
-      {@render children()}
-    {/if}
-  </div>
+<div id="a11y-menu" class="menu" popover>
+  <h2 class="menu_title">Accessibility Menu</h2>
+  <LanguageSelector />
+  <ProfileSelector />
+  <button popovertarget="a11y-menu" popovertargetaction="hide">x</button>
+  {#if children}
+    {@render children()}
+  {/if}
+</div>
 
 <style>
   :root {
-    --btn-top: 4dvh;
-    --btn-right: 5dvw;
+    --btn-top: 4rem;
+    --btn-right: 5rem;
   }
 
   .buttonBox {
@@ -53,23 +54,23 @@
 
   .menu {
     display: none;
-    max-width: min(90dvw,50rem);
-    max-height: 50dvh;
+    max-width: min(90rem, 50rem); /* Vervangt 90dvw met conservatieve rem-waarde */
+    max-height: 30rem; /* Vervangt 50dvh met 30rem (~480px) */
     position: fixed;
-    top: calc(5dvh + var(--btn-top));
-    right: 5dvw;
+    top: calc(1rem + var(--btn-top)); /* Voor consistentie */
+    right: var(--btn-right);
     left: auto;
     z-index: 10;
     border: 1px solid #ccc;
     border-radius: 0.5rem;
     padding: 1rem;
     margin: 0;
-    margin-left: 5dvw;
+    margin-left: 3rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     overflow: auto;
-    
+
     transition-behavior: allow-discrete;
-    transition: opacity 0.2s ease-out, transform 0.1s ease-in-out,display 0.2s allow-discrete  ;
+    transition: opacity 0.2s ease-out, transform 0.1s ease-in-out, display 0.2s allow-discrete;
     outline: olive solid;
   }
 
@@ -92,7 +93,6 @@
     display: none;
   }
 
-  /* for the browsers that support anchor() */
   @supports (anchor-name: --myAnchor) {
     [popovertarget] {
       display: inline;
@@ -116,7 +116,6 @@
     }
   }
 
-  /* smaller desktop screen */
   @media screen and (width < 600px) {
     .menu {
       position: fixed;
@@ -129,7 +128,6 @@
     }
   }
 
-  /* detection for mobile */
   @media (pointer: coarse) and (hover: none) and (min-resolution: 400dpi),
     screen and (device-width <= 900px) and (width <= 900px) and (orientation: portrait),
     screen and (device-height <= 900px) and (height <= 900px) and (orientation: landscape) {
@@ -147,7 +145,7 @@
     .menu {
       top: auto;
       bottom: 0;
-      inset-inline: 4%;
+      inset-inline: 2rem;
       width: auto;
       margin: 0;
     }
@@ -156,11 +154,10 @@
       display: inline-flex;
       position: absolute;
       top: var(--btn-top);
-      right: 12dvw;
+      right: 8rem;
       width: fit-content;
     }
 
-    /* for the browsers that support anchor() */
     @supports (anchor-name: --myAnchor) {
       [popovertarget] {
         display: inline;
@@ -174,7 +171,7 @@
       .menu[popover] {
         position-anchor: --myAnchor;
         inset: unset;
-        margin-inline: var(--btn-right) max(auto,var(--btn-right));
+        margin-inline: var(--btn-right) max(auto, var(--btn-right));
         width: auto;
         right: anchor(right) !important;
         bottom: calc(anchor(top) + 1rem);
@@ -182,3 +179,4 @@
     }
   }
 </style>
+

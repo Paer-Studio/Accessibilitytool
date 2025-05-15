@@ -3,6 +3,7 @@
     import AccessibilityMenu from '$lib/components/AccessibilityMenu.svelte';
     import { profile, language } from '$lib/stores/accessibility';
     import { page } from '$app/stores';
+    let popoverOpen = false;
   
     let spoken = false;
   
@@ -36,10 +37,7 @@
   
   <slot />
     
-  
   <h1>Welcome to your library project Test AccessibilityTool</h1>
   <p>Create your package using @sveltejs/package and preview/showcase your work with SvelteKit</p>
   <p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
-  
   <AccessibilityMenu />
-  
