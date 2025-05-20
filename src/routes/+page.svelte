@@ -35,9 +35,26 @@
     
   </script>
   
-  <slot />
+ 
     
   <h1>Welcome to your library project Test AccessibilityTool</h1>
   <p>Create your package using @sveltejs/package and preview/showcase your work with SvelteKit</p>
   <p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
-  <AccessibilityMenu />
+  <AccessibilityMenu ></AccessibilityMenu>
+
+  <style>
+    :root{
+      --font-size: 1rem;
+    }
+
+    h1 {
+      font-size: max(3rem,var(--font-size));
+      line-height: var(--line-height,100%);
+    }
+
+    p {
+      font-size: max(1.5rem,var(--font-size));
+      line-height: var(--line-height,100%);
+
+    }
+  </style>
