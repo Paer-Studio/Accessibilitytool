@@ -17,7 +17,7 @@
 		document.documentElement.style.setProperty('--y-cursor', `${pageY}px`);
 		document.documentElement.style.setProperty('--sizeX-cursor', `${size}px`);
 		document.documentElement.style.setProperty('--sizeY-cursor', `${size}px`);
-		document.documentElement.style.setProperty('--color-cursor', settings.cursorColor);
+		document.documentElement.style.setProperty('--color-cursor', `hsl(${settings.cursorSizeLevel * settings.cursorSizeLevel} 60.7% 45.7%)`);
 	}
 
 	function resetCursorStyles() {
@@ -59,53 +59,17 @@
 		updateCursorStyles();
 	}
 
-	// when the mouse is hovering over a link the cursor will lose it's outline and the link will get a red border 
-	// and the cursor will be visible
-	onMount(() => {
-		let links = document.querySelectorAll('a');
-		links.forEach((el) => {
-			el.addEventListener('mouseover', () => {
-				document.body.classList.add('dim');
-				document.body.querySelectorAll('*').forEach(e => e.classList.add('dim'));
-
-				el.classList.remove('dim');
-				el.classList.add('hoverLink');
-				el.style.border = 'solid 2px red';
-				document.documentElement.style.setProperty('--opacity-cursor', '1');
-			});
-			el.addEventListener('mouseout', () => {
-				document.body.classList.remove('dim');
-				el.classList.remove('hoverLink');
-				el.style.border = 'none';
-				document.documentElement.style.setProperty('--opacity-cursor', '0');
-			});
-		});
-
-	});
-
-
 </script>
 
 <button onclick={toggleAfter}>
-	followCursor
+	{#if settings.cursorSizeLevel <= 4}
+		followCursor
+	{:else if settings.cursorSizeLevel > 4}
+		cursor area  {settings.cursorSizeLevel}
+	{/if}
 </button>
 
 <style>
-
-	/* Dim all links */
-:global(body.dim *)  {
-	opacity: 0.2;
-	transition: opacity 0.3s ease;
-}
-
-/* Except the one we're hovering on */
-:global(a.hoverLink) {
-	opacity: 1 !important;
-	border: solid 2px red; /* fallback in case JS fails */
-	z-index: 10;
-	position: relative;
-}
-
 
 :global(html:has(.buttonBox button[popovertarget="a11y-menu"]) .buttonBox::after) {
 	content: '';
@@ -127,18 +91,9 @@
 
 :global(html:has(*:hover) .buttonBox::after) {
 	outline-offset: 2rem !important;
-	outline-color: red !important;
+	outline-color: color-mix(in srgb, var(--color-cursor) , black) !important;
 	transition: 1s ease-out;
 }
-
-/* :global(html:where(a:hover)) {
-	body{
-		outline-offset: 2rem !important;
-		outline-color: rgb(34, 255, 0) !important;
-		background-color:rgb(34, 255, 0) !important ;
-		transition: 1s ease-out;
-	}
-} */
 
 
 div {
@@ -153,7 +108,9 @@ div {
 }
 
 button {
+	color: white;
 	padding: 2%;
+	background-color: var(--color-cursor, #333);
 }
 
 </style>
