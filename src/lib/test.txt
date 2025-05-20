@@ -1,0 +1,42 @@
+export default class AccessibilityMenu {
+	constructor({ parent = document.body } = {}) {
+		this.parent = parent;
+		this.menu      = this._buildMenu();
+		this.parent.appendChild(this.menu);
+	}
+
+	_buildMenu() {
+		const container = document.createElement('div');
+		container.id    = 'accessibility-menu';
+		Object.assign(container.style, {
+			position: 'fixed',
+			bottom: '20px',
+			right:  '20px',
+			background: '#fff',
+			border: '1px solid #ccc',
+			padding: '10px',
+			borderRadius: '4px',
+			zIndex: 1000
+		});
+
+		// example toggle: high-contrast
+		const btnContrast = document.createElement('button');
+		btnContrast.textContent = 'Toggle High Contrast';
+		btnContrast.onclick     = () => {
+			document.body.classList.toggle('high-contrast');
+		};
+		container.appendChild(btnContrast);
+
+		// example toggle: increase font
+		const btnFont = document.createElement('button');
+		btnFont.textContent = 'Increase Font';
+		btnFont.style.marginLeft = '8px';
+		btnFont.onclick = () => {
+			const curr = parseFloat(getComputedStyle(document.documentElement).fontSize);
+			document.documentElement.style.fontSize = (curr + 1) + 'px';
+		};
+		container.appendChild(btnFont);
+
+		return container;
+	}
+}

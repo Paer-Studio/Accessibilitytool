@@ -14,13 +14,6 @@
 		const newValue = +(event.target as HTMLInputElement).value;
 		onChange(newValue);
 	}
-<<<<<<< Updated upstream
-
-
-
-	
-=======
->>>>>>> Stashed changes
 </script>
 
 

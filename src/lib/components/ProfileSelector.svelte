@@ -1,5 +1,6 @@
 <script>
   import { profile } from '$lib/stores/accessibility';
+  import { CursorHighlight } from '$lib'
 
   let profiles = $state(['blind','colorblind', 'lowvision','Dislexia']); 
   let selectedProfile = $derived(''); 
@@ -15,7 +16,7 @@
   });
 </script>
 
-<div class="section">
+<section>
   <p class="section_label">Accessibility Profiles</p>
   {#each profiles as profile}
     <label class:active={ selectedProfile === profile}>
@@ -23,16 +24,17 @@
       {profile}
     </label>  
   {/each}
-</div>
+  </section>
 
-<div class="section">
+<section>
   <p class="section_label">Accessibility Profiles</p>
   <button>Lees pagina</button>
   <button>Zichtbare links</button>
-</div>
+  <CursorHighlight />
+</section>
 
 <style>
-  .section {
+  section {
     margin-bottom: 1rem;
   }
 

@@ -1,15 +1,13 @@
 <script lang="ts">
-  import LanguageSelector from './LanguageSelector.svelte';
-  import ProfileSelector from './ProfileSelector.svelte';
+  import {
+    LanguageSelector,
+    ProfileSelector,
+    TextSize,
+    CursorHighlight,
+    LineHeight 
+  } from '$lib';
   import { fade } from 'svelte/transition';
 
-  interface Props {
-    children: import('svelte').Snippet<[]>;
-  }
-
-  let { children }: Props = $props();
-
-  const comment = `it's missing the other a11y components and the styling for the menu and inputs`;
 </script>
 
 <div class="buttonBox">
@@ -20,16 +18,17 @@
   <h2 class="menu_title">Accessibility Menu</h2>
   <LanguageSelector />
   <ProfileSelector />
+  <TextSize/>
+  <LineHeight/>
+ 
+
   <button popovertarget="a11y-menu" popovertargetaction="hide">x</button>
-  {#if children}
-    {@render children()}
-  {/if}
 </div>
 
 <style>
   :root {
-    --btn-top: 4rem;
-    --btn-right: 5rem;
+    --btn-top: 4dvh;
+    --btn-right: 5dvw;
   }
 
   .buttonBox {
@@ -39,7 +38,7 @@
     position: fixed;
     top: var(--btn-top);
     right: var(--btn-right);
-    z-index: 1000;
+    z-index: 500;
   }
 
   button {
@@ -54,15 +53,17 @@
 
   .menu {
     display: none;
-    max-width: min(90rem, 50rem); /* Vervangt 90dvw met conservatieve rem-waarde */
-    max-height: 30rem; /* Vervangt 50dvh met 30rem (~480px) */
+    max-width: min(90dvw, 50rem); /* Vervangt 90dvw met conservatieve rem-waarde */
+    max-height: 50dvh; /* Vervangt 50dvh met 30rem (~480px) */
     position: fixed;
-    top: calc(1rem + var(--btn-top)); /* Voor consistentie */
+    top: calc(3.5rem + var(--btn-top)); /* Voor consistentie */
     right: var(--btn-right);
     left: auto;
     z-index: 10;
     border: 1px solid #ccc;
     border-radius: 0.5rem;
+    background-color: #ffffffe1;
+    backdrop-filter: blur(10px);
     padding: 1rem;
     margin: 0;
     margin-left: 3rem;
@@ -119,9 +120,8 @@
   @media screen and (width < 600px) {
     .menu {
       position: fixed;
-      top: 0;
       right: 0;
-      left: 0;
+      left: var(--btn-right);
       width: 100%;
       height: fit-content;
       margin: 0;
@@ -177,6 +177,19 @@
         bottom: calc(anchor(top) + 1rem);
       }
     }
+  }
+
+  .after-element {
+    position: fixed;
+    pointer-events: none;
+    width: 40px;
+    height: 40px;
+    background: rgba(0,0,0,0.15);
+    border-radius: 50%;
+    z-index: 2000;
+    transform: translate(-50%, -50%);
+    transition: background 0.2s;
+    border: 2px solid #333;
   }
 </style>
 
