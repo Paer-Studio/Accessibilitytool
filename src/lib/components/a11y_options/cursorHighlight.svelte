@@ -34,7 +34,7 @@
 		root.setProperty('--opacity-cursor', '0');
 	}
 
-	function toggleAfter() {
+	function toggleHighlight() {
 		if (settings.cursorSizeLevel > 14) {
 			// Turn off
 			followCursor = false;
@@ -64,7 +64,7 @@
 
 </script>
 
-<button onclick={toggleAfter}>
+<button onclick={toggleHighlight}>
 	{#if settings.cursorSizeLevel <= SMALL_CURSOR_THRESHOLD}
 		followCursor
 	{:else if settings.cursorSizeLevel > SMALL_CURSOR_THRESHOLD}
@@ -74,7 +74,7 @@
 
 <style>
 
-:global(html:has(.buttonBox button[popovertarget="a11y-menu"]) .buttonBox::after) {
+:global(html:has(.buttonBox button[popovertarget="a11yMenu"]) .buttonBox::after) {
 	content: '';
 	position: fixed;
 	top: var(--y-cursor, var(--btn-top));
@@ -97,7 +97,6 @@
 	outline-color: color-mix(in srgb, var(--color-cursor) , black) !important;
 	transition: 1s ease-out;
 }
-
 
 div {
 	position: fixed;
