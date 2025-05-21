@@ -62,9 +62,9 @@
 </script>
 
 <button onclick={toggleAfter}>
-	{#if settings.cursorSizeLevel <= 4}
+	{#if settings.cursorSizeLevel <= SMALL_CURSOR_THRESHOLD}
 		followCursor
-	{:else if settings.cursorSizeLevel > 4}
+	{:else if settings.cursorSizeLevel > SMALL_CURSOR_THRESHOLD}
 		cursor area  {settings.cursorSizeLevel}
 	{/if}
 </button>
