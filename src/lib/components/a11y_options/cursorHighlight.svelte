@@ -18,6 +18,8 @@
 		document.documentElement.style.setProperty('--y-cursor', `${pageY}px`);
 		document.documentElement.style.setProperty('--sizeX-cursor', `${size}px`);
 		document.documentElement.style.setProperty('--sizeY-cursor', `${size}px`);
+		// The hue (first value in HSL) is determined by squaring `cursorSizeLevel` to create a non-linear progression of colors.
+		// The saturation (60.7%) and lightness (45.7%) values were chosen for their visual appeal and consistency.
 		document.documentElement.style.setProperty('--color-cursor', `hsl(${settings.cursorSizeLevel * settings.cursorSizeLevel} 60.7% 45.7%)`);
 	}
 
