@@ -6,7 +6,7 @@
     }
   </script>
   
-  <div class="section">
+  <div class="section override">
     <p class="section_label">Language</p>
     <button onclick={() => setLang('nl')}>Nederlands</button>
     <button onclick={() => setLang('en')}>English</button>

@@ -8,37 +8,45 @@
     ReduceAnimation
   } from '$lib';
   import { fade } from 'svelte/transition';
+	import Contrast from './a11y_options/contrast.svelte';
 
 </script>
 
-<div class="buttonBox">
-  <button popovertarget="a11y-menu">♿︎</button>
+<div class="buttonBox override">
+  <button popovertarget="a11yMenu">♿︎</button>
 </div>
 
-<div id="a11y-menu" class="menu" popover>
-  <h2 class="menu_title">Accessibility Menu</h2>
+<div id="a11yMenu" class="menu override" popover>
+  <h2 class="menuTitle">Accessibility Menu</h2>
   <LanguageSelector />
   <ProfileSelector />
   <TextSize/>
   <LineHeight/>
+  <Contrast/>
+  <CursorHighlight/>
   <ReduceAnimation/>
 
-  <button popovertarget="a11y-menu" popovertargetaction="hide">x</button>
+  <button popovertarget="a11yMenu" popovertargetaction="hide">x</button>
 </div>
 
 <style>
   :root {
     --btn-top: 4dvh;
-    --btn-right: 5dvw;
+    --btn-right: 5dvw;  
+  }
+
+  :global(.override) {
+    --font-size: initial;
+    --line-height: initial;
   }
 
   .buttonBox {
     display: inline-flex;
     place-content: end;
-    width: 100%;
     position: fixed;
     top: var(--btn-top);
     right: var(--btn-right);
+    left: auto;
     z-index: 500;
   }
 
@@ -61,7 +69,7 @@
     right: var(--btn-right);
     left: auto;
     z-index: 10;
-    border: 1px solid #ccc;
+    border: .1rem solid #ccc;
     border-radius: 0.5rem;
     background-color: #ffffffe1;
     backdrop-filter: blur(10px);
@@ -87,7 +95,7 @@
     }
   }
 
-  .menu_title {
+  .menuTitle {
     font-size: 1.2rem;
   }
 
@@ -180,7 +188,7 @@
     }
   }
 
-  .after-element {
+  /* .after-element {
     position: fixed;
     pointer-events: none;
     width: 40px;
@@ -191,6 +199,6 @@
     transform: translate(-50%, -50%);
     transition: background 0.2s;
     border: 2px solid #333;
-  }
+  } */
 </style>
 
