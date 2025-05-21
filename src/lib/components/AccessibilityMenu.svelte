@@ -4,7 +4,8 @@
     ProfileSelector,
     TextSize,
     CursorHighlight,
-    LineHeight 
+    LineHeight,
+    ReduceAnimation
   } from '$lib';
   import { fade } from 'svelte/transition';
 
@@ -20,7 +21,7 @@
   <ProfileSelector />
   <TextSize/>
   <LineHeight/>
- 
+  <ReduceAnimation/>
 
   <button popovertarget="a11y-menu" popovertargetaction="hide">x</button>
 </div>

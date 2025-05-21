@@ -74,6 +74,7 @@
 
 <style>
 
+
 :global(html:has(.buttonBox button[popovertarget="a11yMenu"]) .buttonBox::after) {
 	content: '';
 	position: fixed;
@@ -86,7 +87,7 @@
 	opacity: var(--opacity-cursor, 1);
 	border-radius: 50%;
 	mix-blend-mode: screen;
-	transition: opacity 0.5s ease-out;
+	transition: opacity 0.5ms ease-out;
 	pointer-events: none;
 	transform-origin: center center;
 	transform: translate(calc(-.5 * var(--sizeX-cursor)), calc(-.5 * var(--sizeX-cursor)) );
