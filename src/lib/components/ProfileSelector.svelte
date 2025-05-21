@@ -1,6 +1,12 @@
 <script>
   import { profile } from '$lib/stores/accessibility';
-  import { CursorHighlight } from '$lib'
+  import { 
+    CursorHighlight,
+    TextSize,
+    Contrast,
+    LineHeight,
+    ReduceAnimation
+  } from '$lib'
 
   let profiles = $state(['blind','colorblind', 'lowvision','Dislexia']); 
   let selectedProfile = $derived(''); 
@@ -31,6 +37,10 @@
   <button>Lees pagina</button>
   <button>Zichtbare links</button>
   <CursorHighlight />
+  <TextSize/>
+  <LineHeight/>
+  <ReduceAnimation/>
+  <Contrast/>
 </section>
 
 <style>

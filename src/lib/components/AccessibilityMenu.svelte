@@ -1,14 +1,6 @@
 <script lang="ts">
-  import {
-    LanguageSelector,
-    ProfileSelector,
-    TextSize,
-    CursorHighlight,
-    LineHeight,
-    ReduceAnimation
-  } from '$lib';
+  import {LanguageSelector,ProfileSelector} from '$lib';
   import { fade } from 'svelte/transition';
-	import Contrast from './a11y_options/contrast.svelte';
 
 </script>
 
@@ -20,12 +12,7 @@
   <h2 class="menuTitle">Accessibility Menu</h2>
   <LanguageSelector />
   <ProfileSelector />
-  <TextSize/>
-  <LineHeight/>
-  <Contrast/>
-  <CursorHighlight/>
-  <ReduceAnimation/>
-
+  
   <button popovertarget="a11yMenu" popovertargetaction="hide">x</button>
 </div>
 
