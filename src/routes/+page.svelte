@@ -37,24 +37,57 @@
   
  
     
-  <h1>Welcome to your library project Test AccessibilityTool</h1>
-  <p>Create your package using @sveltejs/package and preview/showcase your work with SvelteKit</p>
-  <p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+  <h1 class="fade-in">Welcome to your library project Test AccessibilityTool</h1>
+<p class="fade-in delay">Create your package using @sveltejs/package and preview/showcase your work with SvelteKit</p>
+<p class="fade-in delay2">
+  Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation
+</p>
   <AccessibilityMenu ></AccessibilityMenu>
 
   <style>
-    :root{
+    :root {
       --font-size: 1rem;
     }
-
+  
     h1 {
-      font-size: max(3rem,var(--font-size));
-      line-height: var(--line-height,100%);
+      font-size: max(3rem, var(--font-size));
+      line-height: var(--line-height, 100%);
     }
-
+  
     p {
-      font-size: max(1.5rem,var(--font-size));
-      line-height: var(--line-height,100%);
-
+      font-size: max(1.5rem, var(--font-size));
+      line-height: var(--line-height, 100%);
     }
+  
+    /* Animatie keyframes */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  
+    /* Fade-in class */
+    .fade-in {
+      animation: fadeIn 1s ease forwards;
+    }
+  
+    /* Delays voor mooie stagger */
+    .delay {
+      animation-delay: 0.3s;
+    }
+  
+    .delay2 {
+      animation-delay: 0.6s;
+    }
+  
+    /* body.reduced-motion .fade-in {
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    } */
   </style>

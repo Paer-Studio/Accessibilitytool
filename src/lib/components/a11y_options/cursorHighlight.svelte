@@ -59,31 +59,6 @@
 		updateCursorStyles();
 	}
 
-	// when the mouse is hovering over a link the cursor will lose it's outline and the link will get a red border 
-	// and the cursor will be visible
-	onMount(() => {
-		let links = document.querySelectorAll('a');
-		links.forEach((el) => {
-			el.addEventListener('mouseover', () => {
-				document.body.classList.add('dim');
-				document.body.querySelectorAll('*').forEach(e => e.classList.add('dim'));
-
-				el.classList.remove('dim');
-				el.classList.add('hoverLink');
-				el.style.border = 'solid 2px red';
-				document.documentElement.style.setProperty('--opacity-cursor', '1');
-			});
-			el.addEventListener('mouseout', () => {
-				document.body.classList.remove('dim');
-				el.classList.remove('hoverLink');
-				el.style.border = 'none';
-				document.documentElement.style.setProperty('--opacity-cursor', '0');
-			});
-		});
-
-	});
-
-
 </script>
 
 <button onclick={toggleAfter}>
@@ -91,21 +66,6 @@
 </button>
 
 <style>
-
-	/* Dim all links */
-:global(body.dim *)  {
-	opacity: 0.2;
-	transition: opacity 0.3s ease;
-}
-
-/* Except the one we're hovering on */
-:global(a.hoverLink) {
-	opacity: 1 !important;
-	border: solid 2px red; /* fallback in case JS fails */
-	z-index: 10;
-	position: relative;
-}
-
 
 :global(html:has(.buttonBox button[popovertarget="a11y-menu"]) .buttonBox::after) {
 	content: '';
@@ -119,7 +79,7 @@
 	opacity: var(--opacity-cursor, 1);
 	border-radius: 50%;
 	mix-blend-mode: screen;
-	transition: opacity 0.5s ease-out;
+	transition: opacity 0.5ms ease-out;
 	pointer-events: none;
 	transform-origin: center center;
 	transform: translate(calc(-.5 * var(--sizeX-cursor)), calc(-.5 * var(--sizeX-cursor)) );

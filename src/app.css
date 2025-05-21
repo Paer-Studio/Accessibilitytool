@@ -114,4 +114,11 @@ select {
 
 }
 
-  
+/* Reduced motion component */
+.reduced-motion *, 
+.reduced-motion *::before, 
+.reduced-motion *::after {
+	animation: none !important;
+	transition: none !important;
+	scroll-behavior: auto !important;
+}
