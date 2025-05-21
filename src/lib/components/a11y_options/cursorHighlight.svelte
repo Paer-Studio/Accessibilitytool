@@ -4,6 +4,7 @@
 	let followCursor = $state(false);
 	let pageX = $state(0);
 	let pageY = $state(0);
+	let SMALL_CURSOR_THRESHOLD = 5;
 
 	let settings = $state({
 		areaSizeLevel: 1,
@@ -17,7 +18,9 @@
 		document.documentElement.style.setProperty('--y-cursor', `${pageY}px`);
 		document.documentElement.style.setProperty('--sizeX-cursor', `${size}px`);
 		document.documentElement.style.setProperty('--sizeY-cursor', `${size}px`);
-		document.documentElement.style.setProperty('--color-cursor', settings.cursorColor);
+		// The hue (first value in HSL) is determined by squaring `cursorSizeLevel` to create a non-linear progression of colors.
+		// The saturation (60.7%) and lightness (45.7%) values were chosen for their visual appeal and consistency.
+		document.documentElement.style.setProperty('--color-cursor', `hsl(${settings.cursorSizeLevel * settings.cursorSizeLevel} 60.7% 45.7%)`);
 	}
 
 	function resetCursorStyles() {
@@ -31,7 +34,7 @@
 		root.setProperty('--opacity-cursor', '0');
 	}
 
-	function toggleAfter() {
+	function toggleHighlight() {
 		if (settings.cursorSizeLevel > 14) {
 			// Turn off
 			followCursor = false;
@@ -61,13 +64,18 @@
 
 </script>
 
-<button onclick={toggleAfter}>
-	followCursor
+<button onclick={toggleHighlight}>
+	{#if settings.cursorSizeLevel <= SMALL_CURSOR_THRESHOLD}
+		followCursor
+	{:else if settings.cursorSizeLevel > SMALL_CURSOR_THRESHOLD}
+		cursor area  {settings.cursorSizeLevel}
+	{/if}
 </button>
 
 <style>
 
-:global(html:has(.buttonBox button[popovertarget="a11y-menu"]) .buttonBox::after) {
+
+:global(html:has(.buttonBox button[popovertarget="a11yMenu"]) .buttonBox::after) {
 	content: '';
 	position: fixed;
 	top: var(--y-cursor, var(--btn-top));
@@ -87,19 +95,9 @@
 
 :global(html:has(*:hover) .buttonBox::after) {
 	outline-offset: 2rem !important;
-	outline-color: red !important;
+	outline-color: color-mix(in srgb, var(--color-cursor) , black) !important;
 	transition: 1s ease-out;
 }
-
-/* :global(html:where(a:hover)) {
-	body{
-		outline-offset: 2rem !important;
-		outline-color: rgb(34, 255, 0) !important;
-		background-color:rgb(34, 255, 0) !important ;
-		transition: 1s ease-out;
-	}
-} */
-
 
 div {
 	position: fixed;
@@ -113,7 +111,9 @@ div {
 }
 
 button {
+	color: white;
 	padding: 2%;
+	background-color: var(--color-cursor, #333);
 }
 
 </style>
