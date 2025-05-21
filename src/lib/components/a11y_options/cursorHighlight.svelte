@@ -4,6 +4,7 @@
 	let followCursor = $state(false);
 	let pageX = $state(0);
 	let pageY = $state(0);
+	let SMALL_CURSOR_THRESHOLD = 5;
 
 	let settings = $state({
 		areaSizeLevel: 1,
