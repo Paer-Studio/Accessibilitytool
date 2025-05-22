@@ -8,6 +8,7 @@
     ReduceAnimation
   } from '$lib';
   import { fade } from 'svelte/transition';
+	import LinkHighlight from './a11y_options/linkHighlight.svelte';
 
 </script>
 
@@ -22,6 +23,7 @@
   <TextSize/>
   <LineHeight/>
   <ReduceAnimation/>
+  <LinkHighlight/>
 
   <button popovertarget="a11y-menu" popovertargetaction="hide">x</button>
 </div>
