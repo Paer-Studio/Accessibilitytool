@@ -1,7 +1,5 @@
 <script lang="ts">
   import {LanguageSelector,ProfileSelector} from '$lib';
-  import { fade } from 'svelte/transition';
-
 </script>
 
 <div class="buttonBox override">
@@ -49,10 +47,10 @@
 
   .menu {
     display: none;
-    max-width: min(90dvw, 50rem); /* Vervangt 90dvw met conservatieve rem-waarde */
-    max-height: 50dvh; /* Vervangt 50dvh met 30rem (~480px) */
+    max-width: min(90dvw, 50rem); 
+    max-height: 50dvh; 
     position: fixed;
-    top: calc(3.5rem + var(--btn-top)); /* Voor consistentie */
+    top: calc(3.5rem + var(--btn-top)); 
     right: var(--btn-right);
     left: auto;
     z-index: 10;
