@@ -5,10 +5,12 @@
     TextSize,
     CursorHighlight,
     LineHeight,
-    ReduceAnimation
+    ReduceAnimation,
+    // DarkMode
   } from '$lib';
   import { fade } from 'svelte/transition';
 	import LinkHighlight from './a11y_options/linkHighlight.svelte';
+  import DarkMode from './a11y_options/DarkMode.svelte';
 
 </script>
 
@@ -24,8 +26,11 @@
   <LineHeight/>
   <ReduceAnimation/>
   <LinkHighlight/>
+  <DarkMode />
 
   <button popovertarget="a11y-menu" popovertargetaction="hide">x</button>
+  <button>reset</button>
+  <button>close</button>
 </div>
 
 <style>
@@ -195,4 +200,3 @@
     border: 2px solid #333;
   }
 </style>
-

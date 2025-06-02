@@ -4,7 +4,6 @@
 	let enabled = false;
 	const storageKey = 'reduced-motion';
 
-	// Zet of haal de waarde uit localStorage bij laden
 	onMount(() => {
 		const stored = localStorage.getItem(storageKey);
 		if (stored === 'true') {
@@ -12,20 +11,17 @@
 		} else if (stored === 'false') {
 			enabled = false;
 		} else {
-			// Gebruik systeemvoorkeur als er niks is opgeslagen
 			enabled = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 		}
 		updateBodyClass();
 	});
 
-	// Toggle de waarde en sla op
 	function toggle() {
 		enabled = !enabled;
 		localStorage.setItem(storageKey, String(enabled));
 		updateBodyClass();
 	}
 
-	// Zet de juiste klasse op <body>
 	function updateBodyClass() {
 		if (typeof document !== 'undefined') {
 			document.body.classList.toggle('reduced-motion', enabled);
@@ -43,39 +39,45 @@
 		</p>
 	</div>
 
-	<!-- Verborgen checkbox -->
+	<!-- Schakelaar -->
 	<div class="relative inline-block w-12 h-6">
 		<input
 			id="reduced-motion-control"
 			type="checkbox"
-			class="sr-only"
+			class="sr-only peer"
 			checked={enabled}
 			on:change={toggle}
 			aria-describedby="reduced-motion-description"
-			aria-checked={enabled}
 		/>
 
-		<!-- Custom switch -->
+		<!-- Custom switch visuals, afhankelijk van input state -->
 		<span
-			class={`absolute cursor-pointer top-0 left-0 right-0 bottom-0 rounded-full transition-colors duration-200 ${
-				enabled ? 'bg-blue-600' : 'bg-gray-300'
-			}`}
-			on:click={toggle}
-			role="presentation"
-		>
-			<span
-				class={`absolute h-4 w-4 left-1 bottom-1 bg-white rounded-full transition-transform duration-200 ${
-					enabled ? 'transform translate-x-6' : ''
-				}`}
-				aria-hidden="true"
-			></span>
-		</span>
+			class="absolute top-0 left-0 right-0 bottom-0 rounded-full transition-colors duration-200 
+				bg-gray-300 peer-checked:bg-blue-600
+			"
+			aria-hidden="true"
+		></span>
+		<span
+			class="absolute h-4 w-4 left-1 bottom-1 bg-white rounded-full transition-transform duration-200 
+				transform peer-checked:translate-x-6
+			"
+			aria-hidden="true"
+		></span>
 	</div>
 
+	<!-- Live status update -->
 	<div class="sr-only" aria-live="polite">
 		Reduced motion is {enabled ? 'enabled' : 'disabled'}
 	</div>
 </div>
+
+<noscript>
+	<div class="mt-4 p-2 border border-gray-300 text-sm text-gray-600">
+		<label for="fallback-reduced-motion">Reduced Motion</label>
+		<input id="fallback-reduced-motion" type="checkbox" disabled />
+		<p>Deze functie werkt alleen met JavaScript ingeschakeld.</p>
+	</div>
+</noscript>
 
 <style>
     :global(body.reduced-motion) * {
