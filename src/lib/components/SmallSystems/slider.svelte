@@ -17,18 +17,18 @@
 </script>
 
 
-<div>
-	<label>
+<div class="override">
+	<label class="override">
 	{label}
-		<input type="range" oninput={handleChange}
-			{min} 
-			{max} 
-			{step} 
-			{value} 
-			aria-valuemin={min}
-			aria-valuemax={max}
-			aria-valuenow={value}
-			>
+	<input type="range" oninput={handleChange}
+		{min} 
+		{max} 
+		{step} 
+		{value} 
+		aria-valuemin={min}
+		aria-valuemax={max}
+		aria-valuenow={value}
+	>
 	</label>
 	<span>{value}</span>
 </div>

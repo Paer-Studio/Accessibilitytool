@@ -2,6 +2,8 @@
 
 // SmallSystems
 export { default as Slider } from './components/SmallSystems/slider.svelte';
+export { default as Select} from './components/SmallSystems/select.svelte';
+
 
 // Components
 export { default as AccessibilityMenu } from './components/AccessibilityMenu.svelte';
