@@ -26,7 +26,7 @@
 			root.style.setProperty('--background-color', '#f8f9fa');
 			root.style.setProperty('--accent-color', '#0066cc');
 		} else {
-			// reset to defaults
+			// default
 			root.style.removeProperty('--text-color');
 			root.style.removeProperty('--background-color');
 			root.style.removeProperty('--accent-color');
@@ -36,7 +36,6 @@
 			elements.forEach((element) => {
 			// Ensure element is an HTMLElement to access the style property.
 			// The query 'body, section, header, footer, nav, main, aside'
-			// will return HTMLElements.
 			if (element instanceof HTMLElement) {
 				element.style.backgroundColor = 'var(--background-color)';
 				// element.style.backgroundColor = 'var(--accent-color) !important';
