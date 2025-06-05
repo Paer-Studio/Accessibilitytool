@@ -1,5 +1,19 @@
 <script lang="ts">
-  import {LanguageSelector,ProfileSelector} from '$lib';
+
+  import {
+    LanguageSelector,
+    ProfileSelector,
+    TextSize,
+    CursorHighlight,
+    LineHeight,
+    ReduceAnimation,
+    // DarkMode
+  } from '$lib';
+  import { fade } from 'svelte/transition';
+	import LinkHighlight from './a11y_options/linkHighlight.svelte';
+  import DarkMode from './a11y_options/DarkMode.svelte';
+
+
 </script>
 
 <div class="buttonBox override">
@@ -10,8 +24,20 @@
   <h2 class="menuTitle">Accessibility Menu</h2>
   <LanguageSelector />
   <ProfileSelector />
+
+  <TextSize/>
+  <LineHeight/>
+  <ReduceAnimation/>
+  <LinkHighlight/>
+  <DarkMode />
+
+  <button popovertarget="a11y-menu" popovertargetaction="hide">x</button>
+  <button>reset</button>
+  <button>close</button>
+
   
   <button popovertarget="a11yMenu" popovertargetaction="hide">x</button>
+
 </div>
 
 <style>
@@ -184,6 +210,10 @@
     transform: translate(-50%, -50%);
     transition: background 0.2s;
     border: 2px solid #333;
+
+  }
+
   } */
 </style>
+
 
