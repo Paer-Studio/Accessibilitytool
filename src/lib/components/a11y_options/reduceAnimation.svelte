@@ -29,6 +29,7 @@
 	}
 </script>
 
+<!-- Kan ook sections maken -->
 <div class="flex items-center justify-between" role="group" aria-labelledby="reduced-motion-label">
 	<div>
 		<label id="reduced-motion-label" for="reduced-motion-control" class="font-medium">
@@ -39,7 +40,7 @@
 		</p>
 	</div>
 
-	<!-- Schakelaar -->
+	<!-- Schakelaar / sections maken -->
 	<div class="relative inline-block w-12 h-6">
 		<input
 			id="reduced-motion-control"
