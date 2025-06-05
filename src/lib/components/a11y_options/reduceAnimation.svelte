@@ -15,60 +15,43 @@
 			// Gebruik systeemvoorkeur als er niks is opgeslagen
 			enabled = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 		}
-		updateBodyClass();
+		updateClass();
 	});
 
 	// Toggle de waarde en sla op
 	function toggle() {
 		enabled = !enabled;
 		localStorage.setItem(storageKey, String(enabled));
-		updateBodyClass();
+		updateClass();
 	}
 
 	// Zet de juiste klasse op <body>
-	function updateBodyClass() {
+	function updateClass() {
 		if (typeof document !== 'undefined') {
 			document.body.classList.toggle('reduced-motion', enabled);
 		}
 	}
 </script>
 
-<div class="flex items-center justify-between" role="group" aria-labelledby="reduced-motion-label">
+<div class="reduced-motion-toggle" role="group" aria-labelledby="reduced-motion-label">
 	<div>
-		<label id="reduced-motion-label" for="reduced-motion-control" class="font-medium">
-			Reduced Motion
-		</label>
-		<p id="reduced-motion-description" class="text-sm text-gray-500 font-normal">
-			Minimizes animations and transitions
-		</p>
+		<label id="reduced-motion-label" for="reduced-motion-control"><strong>Reduced Motion</strong></label>
+		<p id="reduced-motion-description">Minimizes animations and transitions</p>
 	</div>
 
-	<!-- Verborgen checkbox -->
-	<div class="relative inline-block w-12 h-6">
+	<div class="switch">
 		<input
 			id="reduced-motion-control"
 			type="checkbox"
 			class="sr-only"
 			checked={enabled}
 			on:change={toggle}
-			aria-describedby="reduced-motion-description"
 			aria-checked={enabled}
+			aria-describedby="reduced-motion-description"
 		/>
 
-		<!-- Custom switch -->
-		<span
-			class={`absolute cursor-pointer top-0 left-0 right-0 bottom-0 rounded-full transition-colors duration-200 ${
-				enabled ? 'bg-blue-600' : 'bg-gray-300'
-			}`}
-			on:click={toggle}
-			role="presentation"
-		>
-			<span
-				class={`absolute h-4 w-4 left-1 bottom-1 bg-white rounded-full transition-transform duration-200 ${
-					enabled ? 'transform translate-x-6' : ''
-				}`}
-				aria-hidden="true"
-			></span>
+		<span class="slider" on:click={toggle}>
+			<span class="knob" aria-hidden="true"></span>
 		</span>
 	</div>
 
@@ -78,13 +61,57 @@
 </div>
 
 <style>
-    :global(body.reduced-motion) * {
-      animation-duration: 0s !important;
-      transition-duration: 0s !important;
-      animation-iteration-count: 1 !important;
-    }
+	.reduced-motion-toggle {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin: 1rem 0;
+	}
 
-    label#reduced-motion-label {
-		font-weight: bold;
+	.switch {
+		position: relative;
+		width: 40px;
+		height: 20px;
+	}
+
+	.slider {
+		background: #ccc;
+		border-radius: 20px;
+		width: 100%;
+		height: 100%;
+		cursor: pointer;
+		transition: background 0.3s;
+		display: block;
+		position: relative;
+	}
+
+	.knob {
+		position: absolute;
+		left: 2px;
+		bottom: 2px;
+		width: 16px;
+		height: 16px;
+		background: white;
+		border-radius: 50%;
+		transition: transform 0.3s;
+	}
+
+	input:checked + .slider {
+		background: #333;
+	}
+
+	input:checked + .slider .knob {
+		transform: translateX(20px);
+	}
+
+	.sr-only {
+		position: absolute;
+		left: -9999px;
+	}
+
+	:global(body.reduced-motion) * {
+		animation-duration: 0s !important;
+		transition-duration: 0s !important;
+		animation-iteration-count: 1 !important;
 	}
 </style>
