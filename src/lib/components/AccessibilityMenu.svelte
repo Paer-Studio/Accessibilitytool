@@ -1,19 +1,5 @@
 <script lang="ts">
-
-  import {
-    LanguageSelector,
-    ProfileSelector,
-    TextSize,
-    CursorHighlight,
-    LineHeight,
-    ReduceAnimation,
-    // DarkMode
-  } from '$lib';
-  import { fade } from 'svelte/transition';
-	import LinkHighlight from './a11y_options/linkHighlight.svelte';
-  import DarkMode from './a11y_options/DarkMode.svelte';
-
-
+  import {LanguageSelector, ProfileSelector, DarkMode} from '$lib';
 </script>
 
 <div class="buttonBox override">
@@ -26,10 +12,6 @@
   <LanguageSelector />
   <ProfileSelector />
 
-  <TextSize/>
-  <LineHeight/>
-  <ReduceAnimation/>
-  <LinkHighlight/>
   <DarkMode />
 
   <button popovertarget="a11y-menu" popovertargetaction="hide">x</button>

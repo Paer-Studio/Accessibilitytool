@@ -4,7 +4,6 @@ import {Slider} from '$lib';
 
 let settings = {
   textSizeLevel: 1,
-    
 };
 
 onMount(() => {

@@ -64,7 +64,17 @@
 
 </script>
 
-<button onclick={toggleHighlight}>
+<button onclick={toggleHighlight} class="override ">
+	<!-- {#if followCursor}
+		<span class="icon">🔍</span>
+	{:else}
+		<span class="icon">👁️</span>
+	{/if}
+	{#if settings.cursorSizeLevel > 14 }
+		<span class="icon">❌</span>
+	{:else if settings.cursorSizeLevel > 0 }
+		<span class="icon">✔️</span>
+	{/if} -->
 	{#if settings.cursorSizeLevel <= SmallCursorThreshold }
 		followCursor
 	{:else if settings.cursorSizeLevel > SmallCursorThreshold }
