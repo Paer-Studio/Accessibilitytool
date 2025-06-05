@@ -12,10 +12,7 @@
 
 	function handleLineHeightChange(NewHeight : number){
 		let LineHeight = NewHeight
-		const currentHeight = parseFloat(
-			getComputedStyle(document.body).lineHeight
-		);
-
+	
 		document.documentElement.style.setProperty('--line-height', `${LineHeight * 1.8}%`);
 		settings = {
 			...settings,

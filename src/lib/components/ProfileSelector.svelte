@@ -1,6 +1,12 @@
 <script>
   import { profile } from '$lib/stores/accessibility';
-  import { CursorHighlight } from '$lib'
+  import { 
+    CursorHighlight,
+    TextSize,
+    Contrast,
+    LineHeight,
+    ReduceAnimation
+  } from '$lib'
 
   let profiles = $state(['blind','colorblind', 'lowvision','Dislexia']); 
   let selectedProfile = $derived(''); 
@@ -16,7 +22,7 @@
   });
 </script>
 
-<section>
+<section class="override">
   <p class="section_label">Accessibility Profiles</p>
   {#each profiles as profile}
     <label class:active={ selectedProfile === profile}>
@@ -24,13 +30,17 @@
       {profile}
     </label>  
   {/each}
-  </section>
+</section>
 
-<section>
+<section class="override">
   <p class="section_label">Accessibility Profiles</p>
   <button>Lees pagina</button>
   <button>Zichtbare links</button>
   <CursorHighlight />
+  <TextSize/>
+  <LineHeight/>
+  <ReduceAnimation/>
+  <Contrast/>
 </section>
 
 <style>
