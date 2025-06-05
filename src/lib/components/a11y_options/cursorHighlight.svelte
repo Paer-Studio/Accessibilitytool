@@ -4,7 +4,7 @@
 	let followCursor = $state(false);
 	let pageX = $state(0);
 	let pageY = $state(0);
-	let SMALL_CURSOR_THRESHOLD = 5;
+	let SmallCursorThreshold  = 5;
 
 	let settings = $state({
 		areaSizeLevel: 1,
@@ -65,9 +65,9 @@
 </script>
 
 <button onclick={toggleHighlight}>
-	{#if settings.cursorSizeLevel <= SMALL_CURSOR_THRESHOLD}
+	{#if settings.cursorSizeLevel <= SmallCursorThreshold }
 		followCursor
-	{:else if settings.cursorSizeLevel > SMALL_CURSOR_THRESHOLD}
+	{:else if settings.cursorSizeLevel > SmallCursorThreshold }
 		cursor area  {settings.cursorSizeLevel}
 	{/if}
 </button>

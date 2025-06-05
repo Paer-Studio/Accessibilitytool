@@ -6,6 +6,7 @@
   <button popovertarget="a11yMenu">♿︎</button>
 </div>
 
+<!-- In principle, there should be a form that reactively updates every time something changes within it.  -->
 <div id="a11yMenu" class="menu override" popover>
   <h2 class="menuTitle">Accessibility Menu</h2>
   <LanguageSelector />
