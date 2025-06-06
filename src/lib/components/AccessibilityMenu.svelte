@@ -1,34 +1,17 @@
 <script lang="ts">
-
-  import {
-    LanguageSelector,
-    ProfileSelector,
-    TextSize,
-    CursorHighlight,
-    LineHeight,
-    ReduceAnimation,
-    // DarkMode
-  } from '$lib';
-  import { fade } from 'svelte/transition';
-	import LinkHighlight from './a11y_options/linkHighlight.svelte';
-  import DarkMode from './a11y_options/DarkMode.svelte';
-
-
+  import {LanguageSelector, ProfileSelector, DarkMode} from '$lib';
 </script>
 
 <div class="buttonBox override">
   <button popovertarget="a11yMenu">♿︎</button>
 </div>
 
+<!-- In principle, there should be a form that reactively updates every time something changes within it.  -->
 <div id="a11yMenu" class="menu override" popover>
   <h2 class="menuTitle">Accessibility Menu</h2>
   <LanguageSelector />
   <ProfileSelector />
 
-  <TextSize/>
-  <LineHeight/>
-  <ReduceAnimation/>
-  <LinkHighlight/>
   <DarkMode />
 
   <button popovertarget="a11y-menu" popovertargetaction="hide">x</button>
