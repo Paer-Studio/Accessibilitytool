@@ -11,12 +11,15 @@
 	import { fade } from 'svelte/transition';
 	import LinkHighlight from './a11y_options/linkHighlight.svelte';
 	import DarkMode from './a11y_options/darkMode.svelte';
+=======
+  import {LanguageSelector, ProfileSelector, DarkMode} from '$lib';
 </script>
 
 <div class="buttonBox override">
 	<button popovertarget="a11yMenu" aria-label="Open Accessibility Menu">♿︎</button>
 </div>
 
+<!-- In principle, there should be a form that reactively updates every time something changes within it.  -->
 <div id="a11yMenu" class="menu override" popover>
 	<div class="menuHeader">
 		<h2 class="menuTitle">Accessibility Menu</h2>
@@ -37,6 +40,20 @@
 		<LinkHighlight />
 		<DarkMode />
 	</div>
+=======
+  <h2 class="menuTitle">Accessibility Menu</h2>
+  <LanguageSelector />
+  <ProfileSelector />
+
+  <DarkMode />
+
+  <button popovertarget="a11y-menu" popovertargetaction="hide">x</button>
+  <button>reset</button>
+  <button>close</button>
+
+  
+  <button popovertarget="a11yMenu" popovertargetaction="hide">x</button>
+
 </div>
 
 <style>
